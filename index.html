@@ -63,7 +63,7 @@
   <div class="warning-box">
     <span class="warning-title">LẤY MÃ QR ĐÓNG PHÍ SÁT HẠCH HẠNG A1 - THI NGÀY 29/09/2026</span>
     <span class="warning-title">THÍ SINH LƯU Ý</span>
-    <span class="warning-detail" style="margin-top: 4px;">_ <strong>Hạn chót đóng phí:</strong> Thí sinh phải hoàn tất thủ tục đóng phí sát hạch trước ngày thi 10 ngày.</span>
+    <span class="warning-detail" style="margin-top: 4px;">_ <strong>Hạn chót đóng phí:</strong> Thí sinh phải hoàn tất thủ tục đóng phí sát hạch trước ngày thi  ngày.</span>
     <span class="warning-detail" style="margin-top: 4px;">_ <strong>Thí sinh đã đóng phí sát hạch mà không thi sẽ bị mất phí sát hạch.</strong></span>
   </div>
 
@@ -161,7 +161,7 @@ document.getElementById('submitBtn').addEventListener('click', function() {
           msgDiv.innerHTML = "❌ Có lỗi hệ thống xảy ra hoặc kết nối bị nghẽn, vui lòng thử lại!";
           console.error("Lỗi Apps Script:", data.error);
         } else {
-          msgDiv.innerHTML = "🔍 Không tìm thấy dữ liệu của thí sinh. Bạn hãy kiểm tra lại số căn cước của mình!";
+          msgDiv.innerHTML = "🔍 Không tìm thấy dữ liệu của thí sinh. Bạn hãy kiểm tra lại số căn cước của mình! Nếu đã nhập đúng mà không có thông tin thì thí sinh chưa được được đưa vào danh sách thi";
         }
       }
       // Cập nhật lại chiều cao khung sau khi dữ liệu hiện ra đầy đủ
