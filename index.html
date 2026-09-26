@@ -101,7 +101,7 @@ function updateHeight() {
   }
 }
 
-document.getElementById('submitBtn').addEventListener('click', function() {
+function handleSearch() {
   var cccd = document.getElementById('cccdInput').value.trim();
   var msgDiv = document.getElementById('msg');
   var resultDiv = document.getElementById('result');
@@ -166,7 +166,6 @@ document.getElementById('submitBtn').addEventListener('click', function() {
           msgDiv.innerHTML = "🔍 Không tìm thấy dữ liệu của thí sinh. Bạn hãy kiểm tra lại số căn cước của mình! Nếu đã nhập đúng mà không có thông tin là do thí sinh chưa đưa vào danh sách thi. Liên hệ trưởng nhóm ZALO để nắm chi tiết";
         }
       }
-      // Cập nhật lại chiều cao khung sau khi dữ liệu hiện ra đầy đủ
       updateHeight();
     })
     .catch(error => {
@@ -177,6 +176,17 @@ document.getElementById('submitBtn').addEventListener('click', function() {
       console.error("Lỗi kết nối:", error);
       updateHeight();
     });
+}
+
+// Gắn sự kiện click vào nút
+document.getElementById('submitBtn').addEventListener('click', handleSearch);
+
+// Gắn sự kiện nhấn phím Enter vào ô input CCCD
+document.getElementById('cccdInput').addEventListener('keypress', function(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault(); // Ngăn chặn hành vi mặc định nếu có
+    document.getElementById('submitBtn').click(); // Kích hoạt sự kiện bấm nút
+  }
 });
 
 // Gọi cập nhật chiều cao khi trang vừa tải xong
