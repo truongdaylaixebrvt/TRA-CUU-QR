@@ -81,7 +81,7 @@
     <p>Ngày sinh: <strong id="resNgaySinh" class="highlight-dark"></strong></p>
     <p>Số Căn cước: <strong id="resCCCD" class="highlight-dark"></strong></p>
     <p>Sát hạch mô tô hạng: <strong id="resHangXe" class="highlight-green"></strong></p>
-    <p>Phí sát hạch và cấp giấy phép: <strong id="resSoTien" class="highlight-price"></strong></p>
+    <p>Phí sát hạch và cấp giấy phép: <strong id="resSoTien" class="highlight-price"> VND</strong> <span id="resTrangThaiPhi" style="margin-left: 8px; padding: 3px 8px; border-radius: 4px; font-weight: bold; font-size: 15px;"></span></p>
     
     <span class="info-heading">QUY TRÌNH THI VÀ ĐÓNG PHÍ</span>
     <div id="resGhiChu"></div>
@@ -141,6 +141,19 @@ function handleSearch() {
         document.getElementById('resCCCD').innerText = cccd;
         document.getElementById('resHangXe').innerText = data.hangXe;
         document.getElementById('resSoTien').innerText = data.soTien;
+        
+        // Hiển thị trạng thái đóng phí từ cột J
+        var trangThaiSpan = document.getElementById('resTrangThaiPhi');
+        var trangThaiText = data.trangThaiPhi || "Chưa đóng phí";
+        trangThaiSpan.innerText = "(" + trangThaiText + ")";
+        
+        if (trangThaiText.includes("Đã đóng")) {
+          trangThaiSpan.style.backgroundColor = "#d4edda"; // Màu xanh nhạt
+          trangThaiSpan.style.color = "#155724";         // Chữ xanh đậm
+        } else {
+          trangThaiSpan.style.backgroundColor = "#fff3cd"; // Màu vàng nhạt
+          trangThaiSpan.style.color = "#856404";         // Chữ cam/nâu đậm
+        }
         
         if (data.ghiChu) {
           document.getElementById('resGhiChu').innerText = data.ghiChu;
