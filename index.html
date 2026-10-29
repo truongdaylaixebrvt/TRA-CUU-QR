@@ -193,7 +193,7 @@ function handleSearch() {
           msgDiv.innerHTML = "❌ Có lỗi hệ thống xảy ra hoặc kết nối bị nghẽn, vui lòng thử lại!";
           console.error("Lỗi Apps Script:", data.error);
         } else {
-          msgDiv.innerHTML = "🔍 Không tìm thấy dữ liệu. Hãy kiểm tra lại số căn cước đã nhập! Nếu nhập đúng nhưng không hiển thị thông tin là do thí sinh chưa đưa vào danh sách thi. Liên hệ trưởng nhóm ZALO để nắm chi tiết";
+          msgDiv.innerHTML = "🔍 Không tìm thấy dữ liệu, thí sinh hãy kiểm tra lại số căn cước đã nhập! Nếu nhập đúng nhưng không hiển thị thông tin là do thí sinh chưa được đưa vào danh sách thi của đợt này. Hãy nhắn tin liên hệ trưởng nhóm ZALO để nắm chi tiết.";
         }
       }
       updateHeight();
