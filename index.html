@@ -64,7 +64,7 @@
     <span class="warning-title">LẤY MÃ QR ĐÓNG PHÍ SÁT HẠCH HẠNG A - KỲ THI NGÀY 01/11/2026</span>
     <span class="warning-title">THÍ SINH LƯU Ý</span>
     <span class="warning-detail" style="margin-top: 4px;">_ <strong>Hạn chót đóng phí: đến hết ngày 24/10/2026.</strong></span>
-    <span class="warning-detail" style="margin-top: 4px;">_ <strong>Nếu thí sinh không thi được thì không đóng phí. Tham gia nhóm ZALO thi lại để chờ kỳ sau. Dự kiến 3 tháng mới được thi lại</strong></span>
+    <span class="warning-detail" style="margin-top: 4px;">_ <strong>Если thí sinh không thi được thì không đóng phí. Tham gia nhóm ZALO thi lại để chờ kỳ sau. Dự kiến 3 tháng mới được thi lại</strong></span>
     <span class="warning-detail" style="margin-top: 4px;">_ <strong>Thí sinh đã đóng phí sát hạch mà vắng thi sẽ bị mất phí sát hạch. Kỳ thi sau phải đóng lại.</strong></span>
     <span class="warning-detail" style="margin-top: 4px;">_ <strong>Thí sinh phát hiện thông tin bị sai thì liên hệ trưởng nhóm ZALO để điều chỉnh lại.</strong></span>
   </div>
@@ -142,7 +142,7 @@ function handleSearch() {
         document.getElementById('resHangXe').innerText = data.hangXe;
         document.getElementById('resSoTien').innerText = data.soTien;
         
-        // Hiển thị trạng thái đóng phí từ cột J
+        // Hiển thị trạng thái đóng phí
         var trangThaiSpan = document.getElementById('resTrangThaiPhi');
         var trangThaiText = data.trangThaiPhi || "Chưa đóng phí";
         trangThaiSpan.innerText = "(" + trangThaiText + ")";
@@ -162,11 +162,28 @@ function handleSearch() {
           document.getElementById('resGhiChu').style.display = 'none';
         }
         
-        if (data.qrUrl) {
+        // Xử lý hiển thị mã QR hoặc thông báo khóa nếu không có ảnh
+        var qrContainer = document.querySelector('.qr-container');
+        let lockMsg = document.getElementById('qrLockMsg');
+        if (!lockMsg) {
+          lockMsg = document.createElement('div');
+          lockMsg.id = 'qrLockMsg';
+          lockMsg.style.color = '#d90429';
+          lockMsg.style.fontWeight = 'bold';
+          lockMsg.style.fontSize = '16px';
+          lockMsg.style.textAlign = 'center';
+          lockMsg.style.marginTop = '15px';
+          qrContainer.appendChild(lockMsg);
+        }
+
+        if (data.qrUrl && data.qrUrl.trim() !== "") {
           qrImg.src = data.qrUrl;
           qrImg.style.display = 'block';
+          lockMsg.style.display = 'none';
         } else {
           qrImg.style.display = 'none';
+          lockMsg.innerText = "Mã QR đóng phí đã khóa. Thí sinh chờ đợt thi tiếp theo";
+          lockMsg.style.display = 'block';
         }
         
         resultDiv.style.display = 'block';
@@ -197,8 +214,8 @@ document.getElementById('submitBtn').addEventListener('click', handleSearch);
 // Gắn sự kiện nhấn phím Enter vào ô input CCCD
 document.getElementById('cccdInput').addEventListener('keypress', function(event) {
   if (event.key === 'Enter') {
-    event.preventDefault(); // Ngăn chặn hành vi mặc định nếu có
-    document.getElementById('submitBtn').click(); // Kích hoạt sự kiện bấm nút
+    event.preventDefault();
+    document.getElementById('submitBtn').click();
   }
 });
 
